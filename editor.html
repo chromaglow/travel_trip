@@ -1,0 +1,1319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>NL Recon 2026 — Field Dossier</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0e0e0e;
+  --paper: #f5f0e8;
+  --cream: #ede8dc;
+  --stamp-red: #c0392b;
+  --stamp-blue: #1a3a5c;
+  --stamp-green: #1d6a47;
+  --stamp-amber: #b87333;
+  --muted: #6b6557;
+  --border: #c8c0b0;
+  --haarlem: #1d6a47;
+  --rotterdam: #c0392b;
+  --utrecht: #b87333;
+  --amersfoort: #1a3a5c;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  padding-bottom: 60px;
+}
+
+/* HEADER */
+.header {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 36px 20px 28px;
+  position: relative;
+  overflow: hidden;
+}
+.header::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: repeating-linear-gradient(
+    0deg, transparent, transparent 2px,
+    rgba(255,255,255,0.015) 2px, rgba(255,255,255,0.015) 4px
+  );
+}
+.header-eyebrow {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: rgba(245,240,232,0.5);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.header-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 52px;
+  line-height: 0.95;
+  letter-spacing: 0.02em;
+  margin-bottom: 4px;
+}
+.header-sub {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: rgba(245,240,232,0.6);
+  letter-spacing: 0.1em;
+}
+.mission-stamp {
+  margin-top: 20px;
+  border: 2px solid var(--stamp-red);
+  display: inline-block;
+  padding: 6px 14px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.15em;
+  color: var(--stamp-red);
+  transform: rotate(-1.5deg);
+}
+
+/* SECTION */
+.section {
+  padding: 0 16px;
+  margin-top: 28px;
+}
+.section-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* PREP LINKS */
+.prep-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.prep-card {
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 12px;
+  text-decoration: none;
+  color: var(--ink);
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  transition: background 0.15s;
+}
+.prep-card:active { background: var(--border); }
+.prep-icon { font-size: 20px; }
+.prep-name {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 1.3;
+}
+.prep-desc {
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+/* CITY SECTIONS */
+.city-header {
+  padding: 20px 16px 14px;
+  margin-top: 28px;
+  position: relative;
+}
+.city-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.city-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 42px;
+  line-height: 1;
+  letter-spacing: 0.03em;
+}
+.city-meta {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 4px;
+  font-style: italic;
+}
+.city-bar {
+  height: 3px;
+  margin: 0 16px;
+}
+
+.city-haarlem .city-label { color: var(--haarlem); }
+.city-haarlem .city-name { color: var(--haarlem); }
+.city-bar-haarlem { background: var(--haarlem); }
+
+.city-rotterdam .city-label { color: var(--rotterdam); }
+.city-rotterdam .city-name { color: var(--rotterdam); }
+.city-bar-rotterdam { background: var(--rotterdam); }
+
+.city-utrecht .city-label { color: var(--utrecht); }
+.city-utrecht .city-name { color: var(--utrecht); }
+.city-bar-utrecht { background: var(--utrecht); }
+
+.city-amersfoort .city-label { color: var(--amersfoort); }
+.city-amersfoort .city-name { color: var(--amersfoort); }
+.city-bar-amersfoort { background: var(--amersfoort); }
+
+/* HOTEL CARD */
+.hotel-card {
+  margin: 0 16px 16px;
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: 8px;
+  padding: 14px 16px;
+}
+.hotel-eyebrow {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.5;
+  margin-bottom: 4px;
+}
+.hotel-name {
+  font-weight: 500;
+  font-size: 15px;
+  margin-bottom: 2px;
+}
+.hotel-address {
+  font-size: 12px;
+  opacity: 0.6;
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+.hotel-links {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.hotel-link {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  padding: 5px 10px;
+  border-radius: 4px;
+  text-decoration: none;
+  border: 1px solid rgba(245,240,232,0.25);
+  color: var(--paper);
+  transition: background 0.15s;
+}
+.hotel-link:active { background: rgba(255,255,255,0.1); }
+.hotel-note {
+  font-size: 11px;
+  opacity: 0.55;
+  margin-top: 8px;
+  font-style: italic;
+  line-height: 1.4;
+}
+
+/* DAY CARDS */
+.day-card {
+  margin: 0 16px 8px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  background: white;
+}
+.day-card-header {
+  display: flex;
+  align-items: center;
+  padding: 12px 14px;
+  cursor: pointer;
+  gap: 12px;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.day-card-header:active { background: var(--cream); }
+.day-date-block {
+  min-width: 44px;
+  text-align: center;
+}
+.day-dow {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.day-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  line-height: 1;
+  color: var(--ink);
+}
+.day-info { flex: 1; }
+.day-badge {
+  display: inline-block;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: 3px;
+  margin-bottom: 3px;
+  color: white;
+}
+.day-title {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.3;
+  color: var(--ink);
+}
+.day-chevron {
+  font-size: 12px;
+  color: var(--muted);
+  transition: transform 0.2s;
+  flex-shrink: 0;
+}
+.day-card.open .day-chevron { transform: rotate(180deg); }
+.day-body {
+  display: none;
+  padding: 0 14px 14px;
+  border-top: 1px solid var(--cream);
+}
+.day-card.open .day-body { display: block; }
+.day-desc {
+  font-size: 13px;
+  color: #444;
+  line-height: 1.6;
+  margin: 10px 0 12px;
+}
+.spots-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.spots-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-bottom: 12px;
+}
+.spot-tag {
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  background: var(--cream);
+  text-decoration: none;
+}
+.train-info {
+  background: var(--cream);
+  border-radius: 5px;
+  padding: 8px 10px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+
+/* SCOUTING FIELDS */
+.scout-section {
+  margin: 0 16px;
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px;
+  margin-bottom: 8px;
+}
+.scout-title {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+.verdict-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.verdict-btn {
+  flex: 1;
+  padding: 10px 6px;
+  border: 2px solid var(--border);
+  border-radius: 6px;
+  background: white;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s;
+  text-align: center;
+  -webkit-tap-highlight-color: transparent;
+}
+.verdict-btn.live { border-color: var(--haarlem); color: var(--haarlem); }
+.verdict-btn.maybe { border-color: var(--stamp-amber); color: var(--stamp-amber); }
+.verdict-btn.nope { border-color: var(--stamp-red); color: var(--stamp-red); }
+.verdict-btn.selected-live { background: var(--haarlem); color: white; border-color: var(--haarlem); }
+.verdict-btn.selected-maybe { background: var(--stamp-amber); color: white; border-color: var(--stamp-amber); }
+.verdict-btn.selected-nope { background: var(--stamp-red); color: white; border-color: var(--stamp-red); }
+
+.vibe-row { margin-bottom: 14px; }
+.vibe-labels {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+input[type=range] {
+  width: 100%;
+  accent-color: var(--ink);
+}
+
+.checks-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+.check-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--ink);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.check-item input { accent-color: var(--ink); width: 14px; height: 14px; }
+
+.field-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 4px;
+  display: block;
+}
+.field-input {
+  width: 100%;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 8px 10px;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 13px;
+  color: var(--ink);
+  resize: none;
+  margin-bottom: 10px;
+  outline: none;
+}
+.field-input:focus { border-color: var(--ink); }
+
+/* PHOTO SECTION */
+.photo-section {
+  margin: 0 16px 8px;
+}
+.photo-add-btn {
+  width: 100%;
+  padding: 12px;
+  border: 2px dashed var(--border);
+  border-radius: 8px;
+  background: transparent;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  cursor: pointer;
+  text-align: center;
+  -webkit-tap-highlight-color: transparent;
+}
+.photo-add-btn:active { background: var(--cream); }
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  margin-top: 8px;
+}
+.photo-thumb {
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 5px;
+  width: 100%;
+}
+input[type=file] { display: none; }
+
+/* TRANSIT CARD */
+.transit-card {
+  margin: 0 16px 8px;
+  background: var(--stamp-blue);
+  color: white;
+  border-radius: 8px;
+  padding: 14px 16px;
+}
+.transit-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px;
+  letter-spacing: 0.05em;
+  margin-bottom: 10px;
+  opacity: 0.9;
+}
+.transit-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 7px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  font-size: 13px;
+}
+.transit-row:last-child { border-bottom: none; }
+.transit-route { font-weight: 500; }
+.transit-time {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  opacity: 0.7;
+}
+.transit-link {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  padding: 3px 8px;
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 3px;
+  color: white;
+  text-decoration: none;
+}
+
+/* DIVIDER */
+.trip-divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 16px 8px;
+}
+.divider-line { flex: 1; height: 1px; background: var(--border); }
+.divider-text {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* FOOTER */
+.footer {
+  margin: 32px 16px 0;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--cream);
+}
+.footer-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+  color: var(--ink);
+}
+.footer-note {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-eyebrow">Field Dossier · April 2026</div>
+  <div class="header-title">NL<br>RECON</div>
+  <div class="header-sub">Haarlem · Rotterdam · Utrecht · Amersfoort</div>
+  <div class="mission-stamp">This is not a vacation. This is reconnaissance.</div>
+</div>
+
+<!-- BEFORE YOU GO -->
+<div class="section">
+  <div class="section-label">Before you leave — get these sorted</div>
+  <div class="prep-grid">
+    <a class="prep-card" href="https://www.airalo.com/netherlands-esim" target="_blank">
+      <div class="prep-icon">📡</div>
+      <div class="prep-name">Airalo eSIM</div>
+      <div class="prep-desc">Netherlands data. Buy before you fly, activate on landing.</div>
+    </a>
+    <a class="prep-card" href="https://www.ns.nl/en/travel-information/ns-on-your-mobile" target="_blank">
+      <div class="prep-icon">🚆</div>
+      <div class="prep-name">NS App</div>
+      <div class="prep-desc">Dutch rail. Download now, buy tickets in-app.</div>
+    </a>
+    <a class="prep-card" href="https://www.ov-chipkaart.nl/en/purchase-an-ov-chipkaart.htm" target="_blank">
+      <div class="prep-icon">💳</div>
+      <div class="prep-name">OV-chipkaart</div>
+      <div class="prep-desc">Transit card for trams, buses, metro. Get one at Schiphol.</div>
+    </a>
+    <a class="prep-card" href="https://www.funda.nl/en/huur/" target="_blank">
+      <div class="prep-icon">🏠</div>
+      <div class="prep-name">Funda.nl</div>
+      <div class="prep-desc">Check rental listings while you walk the streets. Reality check tool.</div>
+    </a>
+    <a class="prep-card" href="https://www.google.com/maps" target="_blank">
+      <div class="prep-icon">🗺️</div>
+      <div class="prep-name">Google Maps</div>
+      <div class="prep-desc">Download offline maps for NL before you go.</div>
+    </a>
+    <a class="prep-card" href="https://www.xe.com/currencyconverter/" target="_blank">
+      <div class="prep-icon">💶</div>
+      <div class="prep-name">XE Currency</div>
+      <div class="prep-desc">USD→EUR converter. Know what you're spending.</div>
+    </a>
+  </div>
+</div>
+
+<!-- TRANSIT OVERVIEW -->
+<div class="section" style="margin-top:24px;">
+  <div class="section-label">Getting around — key journeys</div>
+</div>
+<div class="transit-card">
+  <div class="transit-title">Train Times</div>
+  <div class="transit-row">
+    <span class="transit-route">Schiphol → Haarlem</span>
+    <span class="transit-time">~10 min</span>
+    <a class="transit-link" href="https://www.ns.nl/en/journeyplanner/#/?vertrek=Amsterdam+Airport+Schiphol&aankomst=Haarlem" target="_blank">Plan</a>
+  </div>
+  <div class="transit-row">
+    <span class="transit-route">Haarlem → Amsterdam</span>
+    <span class="transit-time">~15 min</span>
+    <a class="transit-link" href="https://www.ns.nl/en/journeyplanner/#/?vertrek=Haarlem&aankomst=Amsterdam+Centraal" target="_blank">Plan</a>
+  </div>
+  <div class="transit-row">
+    <span class="transit-route">Haarlem → Leiden</span>
+    <span class="transit-time">~20 min</span>
+    <a class="transit-link" href="https://www.ns.nl/en/journeyplanner/#/?vertrek=Haarlem&aankomst=Leiden+Centraal" target="_blank">Plan</a>
+  </div>
+  <div class="transit-row">
+    <span class="transit-route">Haarlem → Rotterdam</span>
+    <span class="transit-time">~1 hr</span>
+    <a class="transit-link" href="https://www.ns.nl/en/journeyplanner/#/?vertrek=Haarlem&aankomst=Rotterdam+Centraal" target="_blank">Plan</a>
+  </div>
+  <div class="transit-row">
+    <span class="transit-route">Rotterdam → Utrecht</span>
+    <span class="transit-time">~45 min</span>
+    <a class="transit-link" href="https://www.ns.nl/en/journeyplanner/#/?vertrek=Rotterdam+Centraal&aankomst=Utrecht+Centraal" target="_blank">Plan</a>
+  </div>
+  <div class="transit-row">
+    <span class="transit-route">Utrecht → Amersfoort</span>
+    <span class="transit-time">~15 min</span>
+    <a class="transit-link" href="https://www.ns.nl/en/journeyplanner/#/?vertrek=Utrecht+Centraal&aankomst=Amersfoort" target="_blank">Plan</a>
+  </div>
+  <div class="transit-row">
+    <span class="transit-route">Amersfoort → Schiphol</span>
+    <span class="transit-time">~45 min</span>
+    <a class="transit-link" href="https://www.ns.nl/en/journeyplanner/#/?vertrek=Amersfoort&aankomst=Amsterdam+Airport+Schiphol" target="_blank">Plan</a>
+  </div>
+</div>
+
+<!-- ===== HAARLEM ===== -->
+<div class="city-header city-haarlem">
+  <div class="city-label">Base 01 · Apr 8–12</div>
+  <div class="city-name">Haarlem</div>
+  <div class="city-meta">Amsterdam's cooler, cheaper little sibling. 15 min from the big city, 10 min from Schiphol. You're living here, not visiting.</div>
+</div>
+<div class="city-bar city-bar-haarlem"></div>
+
+<div class="hotel-card">
+  <div class="hotel-eyebrow">Your bed · 4 nights</div>
+  <div class="hotel-name">Hotel ML</div>
+  <div class="hotel-address">Klokhuisplein 9, 2011 HK Haarlem</div>
+  <div class="hotel-links">
+    <a class="hotel-link" href="https://www.mlinhaarlem.nl/en/hotel/" target="_blank">Website</a>
+    <a class="hotel-link" href="https://www.google.com/maps/place/?q=place_id:ChIJsa953mvvxUcRy50HHiu7Qhk" target="_blank">Maps</a>
+    <a class="hotel-link" href="tel:+31235123910">Call</a>
+  </div>
+  <div class="hotel-note">Reception closes 10pm. Michelin-starred restaurant in the building — save it for a special dinner. Rated 9.6/10 from 980 reviews.</div>
+</div>
+
+<!-- Day cards Haarlem -->
+<div class="day-card" onclick="toggleDay(this)">
+  <div class="day-card-header">
+    <div class="day-date-block">
+      <div class="day-dow">Wed</div>
+      <div class="day-num" style="color:var(--haarlem)">8</div>
+    </div>
+    <div class="day-info">
+      <div class="day-badge" style="background:var(--haarlem)">Arrive</div>
+      <div class="day-title">Schiphol → Haarlem. Slow first afternoon.</div>
+    </div>
+    <div class="day-chevron">▼</div>
+  </div>
+  <div class="day-body">
+    <div class="train-info">✈ Land 8:40 AM → 🚆 Schiphol → Haarlem (~10 min, runs every 15 min)</div>
+    <div class="day-desc">Drop bags, find a café, walk the Centrum and Spaarne riverfront. No agenda — just land softly and start absorbing. You're already scouting.</div>
+  </div>
+</div>
+
+<div class="day-card" onclick="toggleDay(this)">
+  <div class="day-card-header">
+    <div class="day-date-block">
+      <div class="day-dow">Thu</div>
+      <div class="day-num" style="color:var(--haarlem)">9</div>
+    </div>
+    <div class="day-info">
+      <div class="day-badge" style="background:var(--haarlem)">Haarlem</div>
+      <div class="day-title">Deep dive — residential streets + spots</div>
+    </div>
+    <div class="day-chevron">▼</div>
+  </div>
+  <div class="day-body">
+    <div class="day-desc">Full day in Haarlem with no agenda. Walk streets you'd actually live on. Pull up Funda.nl on your phone while you're standing on a street — knowing the actual rents changes how you see it.</div>
+    <div class="spots-label">Your spots here</div>
+    <div class="spots-list">
+      <a class="spot-tag" href="https://www.google.com/maps/place/?q=place_id:ChIJX_KFaJvvxUcRYUvgnFLUuyQ" target="_blank">Sauna Van Egmond</a>
+      <a class="spot-tag" href="https://www.google.com/maps/place/?q=place_id:ChIJRUdeN4LvxUcRijjQJRw8DUI" target="_blank">Boulderhal de Fabriek</a>
+      <a class="spot-tag" href="https://www.google.com/maps/place/?q=place_id:ChIJKQHH9mLvxUcRZUgDI68flUY" target="_blank">MAAK Haarlem</a>
+      <a class="spot-tag" href="https://www.google.com/maps/place/?q=place_id:ChIJVwRl7mLvxUcRvNoU0tEq1cA" target="_blank">3D Makers Zone</a>
+      <a class="spot-tag" href="https://www.google.com/maps/place/?q=place_id:ChIJeS72yD_vxUcRfbAl0EVj4qk" target="_blank">Dansschool Schröder</a>
+    </div>
+  </div>
+</div>
+
+<div class="day-card" onclick="toggleDay(this)">
+  <div class="day-card-header">
+    <div class="day-date-block">
+      <div class="day-dow">Fri</div>
+      <div class="day-num" style="color:var(--haarlem)">10</div>
+    </div>
+    <div class="day-info">
+      <div class="day-badge" style="background:var(--stamp-blue)">Day Trip</div>
+      <div class="day-title">Amsterdam — De Pijp + Oud-West</div>
+    </div>
+    <div class="day-chevron">▼</div>
+  </div>
+  <div class="day-body">
+    <div class="train-info">🚆 Haarlem → Amsterdam Centraal · ~15 min · runs every 10 min</div>
+    <div class="day-desc">One focused Amsterdam day. Albert Cuyp Market in De Pijp, walk the residential streets of Oud-West. This is what Amsterdam actually costs to live in. Train back to Haarlem for dinner — compare them fresh in your mind.</div>
+  </div>
+</div>
+
+<div class="day-card" onclick="toggleDay(this)">
+  <div class="day-card-header">
+    <div class="day-date-block">
+      <div class="day-dow">Sat</div>
+      <div class="day-num" style="color:var(--haarlem)">11</div>
+    </div>
+    <div class="day-info">
+      <div class="day-badge" style="background:var(--stamp-blue)">Day Trip</div>
+      <div class="day-title">Leiden — Rapenburg canal + Saturday market</div>
+    </div>
+    <div class="day-chevron">▼</div>
+  </div>
+  <div class="day-body">
+    <div class="train-info">🚆 Haarlem → Leiden Centraal · ~20 min direct</div>
+    <div class="day-desc">Saturdays are the best day to see Leiden. Good market energy, locals out. University town, strong international community, genuinely affordable. Back to Haarlem for the evening.</div>
+    <div class="spots-label">Your spots here</div>
+    <div class="spots-list">
+      <a class="spot-tag" href="https://www.google.com/maps/place/?q=place_id:ChIJoVVnC5PGxUcRDTXy0CH38Ww" target="_blank">MakerSpace Leiden</a>
+      <a class="spot-tag" href="https://www.google.com/maps/place/?q=place_id:ChIJtz64RwrHxUcRnuMo6LJI64s" target="_blank">Dankjewellness Sauna</a>
+      <a class="spot-tag" href="https://www.google.com/maps/place/?q=place_id:ChIJK0cYs17GxUcRIJ7K4x_AqHE" target="_blank">Boulderhal Kunststof</a>
+      <a class="spot-tag" href="https://www.google.com/maps/place/?q=place_id:ChIJr2iZkuzGxUcRe0fJbpHFkxw" target="_blank">Nobel Live Music</a>
+      <a class="spot-tag" href="https://www.google.com/maps/place/?q=place_id:ChIJf9YIP9XFxUcRM8hVYeb9JdU" target="_blank">Dos Bailadores</a>
+    </div>
+  </div>
+</div>
+
+<div class="day-card" onclick="toggleDay(this)">
+  <div class="day-card-header">
+    <div class="day-date-block">
+      <div class="day-dow">Sun</div>
+      <div class="day-num" style="color:var(--haarlem)">12</div>
+    </div>
+    <div class="day-info">
+      <div class="day-badge" style="background:var(--haarlem)">Haarlem</div>
+      <div class="day-title">Slow Sunday → afternoon move to Rotterdam</div>
+    </div>
+    <div class="day-chevron">▼</div>
+  </div>
+  <div class="day-body">
+    <div class="day-desc">Sunday in a Dutch city tells you a lot — who's out, what's open, how it rests. Morning markets, café culture, residential feel. Pack up after lunch and head south.</div>
+    <div class="train-info">🚆 Haarlem → Rotterdam Centraal · ~1 hr direct · afternoon departure</div>
+  </div>
+</div>
+
+<!-- Haarlem Scout Fields -->
+<div class="section" style="margin-top:6px;">
+  <div class="section-label">Haarlem — field notes</div>
+</div>
+<div class="scout-section">
+  <div class="scout-title">Verdict</div>
+  <div class="verdict-row">
+    <button class="verdict-btn live" onclick="setVerdict(this,'haarlem','live')">Live Here</button>
+    <button class="verdict-btn maybe" onclick="setVerdict(this,'haarlem','maybe')">Maybe</button>
+    <button class="verdict-btn nope" onclick="setVerdict(this,'haarlem','nope')">No</button>
+  </div>
+  <div class="vibe-row">
+    <div class="vibe-labels"><span>Too quiet</span><span>Just right</span><span>Too chaotic</span></div>
+    <input type="range" min="0" max="100" value="50" oninput="saveVibe('haarlem',this.value)">
+  </div>
+  <div class="checks-grid">
+    <label class="check-item"><input type="checkbox" onchange="saveChecks('haarlem')"> Felt like us</label>
+    <label class="check-item"><input type="checkbox" onchange="saveChecks('haarlem')"> Good groceries</label>
+    <label class="check-item"><input type="checkbox" onchange="saveChecks('haarlem')"> Safe at night</label>
+    <label class="check-item"><input type="checkbox" onchange="saveChecks('haarlem')"> Expat community</label>
+    <label class="check-item"><input type="checkbox" onchange="saveChecks('haarlem')"> Bikeable</label>
+    <label class="check-item"><input type="checkbox" onchange="saveChecks('haarlem')"> Date-worthy</label>
+  </div>
+  <label class="field-label">Rent reality (what Funda showed)</label>
+  <input class="field-input" type="text" placeholder="e.g. €1,400/mo for a 2BR on Zijlstraat" oninput="saveField('haarlem','rent',this.value)">
+  <label class="field-label">Neighborhood notes</label>
+  <textarea class="field-input" rows="2" placeholder="The street behind the market felt right..." oninput="saveField('haarlem','notes',this.value)"></textarea>
+  <label class="field-label">Deal breakers</label>
+  <textarea class="field-input" rows="2" placeholder="Anything that gave you pause..." oninput="saveField('haarlem','dealbreaker',this.value)"></textarea>
+</div>
+
+<!-- Haarlem Photos -->
+<div class="section" style="margin-top:6px; margin-bottom:0;">
+  <div class="section-label">Haarlem — photos</div>
+</div>
+<div class="photo-section">
+  <input type="file" id="photo-haarlem" accept="image/*" multiple onchange="addPhotos('haarlem',this)">
+  <button class="photo-add-btn" onclick="document.getElementById('photo-haarlem').click()">+ Add photos from Haarlem</button>
+  <div class="photo-grid" id="grid-haarlem"></div>
+</div>
+
+<!-- ===== ROTTERDAM ===== -->
+<div class="trip-divider"><div class="divider-line"></div><div class="divider-text">Move south</div><div class="divider-line"></div></div>
+
+<div class="city-header city-rotterdam">
+  <div class="city-label">Base 02 · Apr 12–14</div>
+  <div class="city-name">Rotterdam</div>
+  <div class="city-meta">Most affordable. Most architecturally bold. Least touristy. The question to answer: does this energy work for your life?</div>
+</div>
+<div class="city-bar city-bar-rotterdam"></div>
+
+<div class="hotel-card">
+  <div class="hotel-eyebrow">Your bed · 2 nights</div>
+  <div class="hotel-name">Hotel Rose Rotterdam (Sonder)</div>
+  <div class="hotel-address">Van Vollenhovenstraat 50, 3016 BJ Rotterdam</div>
+  <div class="hotel-links">
+    <a class="hotel-link" href="https://www.booking.com/hotel/nl/sonder-rose.html" target="_blank">Booking.com</a>
+    <a class="hotel-link" href="https://www.google.com/maps/place/?q=place_id:ChIJWyOoIwAzxEcRE6XTu5yEmKc" target="_blank">Maps</a>
+  </div>
+  <div class="hotel-note">⚠️ App-based check-in. Download the Sonder app BEFORE you arrive. Takes 10–15 min first time. Rated 9.2/10 from 2,282 reviews.</div>
+</div>
+
+<div class="day-card" onclick="toggleDay(this)">
+  <div class="day-card-header">
+    <div class="day-date-block">
+      <div class="day-dow">Sun</div>
+      <div class="day-num" style="color:var(--rotterdam)">12</div>
+    </div>
+    <div class="day-info">
+      <div class="day-badge" style="background:var(--rotterdam)">Arrive</div>
+      <div class="day-title">Check in · Katendrecht or Kralingen afternoon</div>
+    </div>
+    <div class="day-chevron">▼</div>
+  </div>
+  <div class="day-body">
+    <div class="day-desc">Let the city hit you. It will feel jarring after Haarlem — that's useful information. Walk Katendrecht (trendy, waterfront) or Kralingen (leafy, residential). Two very different sides of Rotterdam.</div>
+    <div class="spots-label">Your spots here</div>
+    <div class="spots-list">
+      <a class="spot-tag" href="https://www.google.com/maps/place/?q=place_id:ChIJFV6bBnszxEcRvRd6bcTYMlo" target="_blank">Dutch Pinball Museum</a>
+      <a class="spot-tag" href="https://www.google.com/maps/place/?q=place_id:ChIJUbgpIaE1xEcR91CecPJnlu8" target="_blank">Beest Boulders</a>
+      <a class="spot-tag" href="https://www.google.com/maps/place/?q=place_id:ChIJEVyS_lPLxUcRAcKVKex6RCg" target="_blank">Monk Bouldergym</a>
+    </div>
+  </div>
+</div>
+
+<div class="day-card" onclick="toggleDay(this)">
+  <div class="day-card-header">
+    <div class="day-date-block">
+      <div class="day-dow">Mon</div>
+      <div class="day-num" style="color:var(--rotterdam)">13</div>
+    </div>
+    <div class="day-info">
+      <div class="day-badge" style="background:var(--rotterdam)">Rotterdam</div>
+      <div class="day-title">Full scouting day — Noordereiland + Maas riverfront</div>
+    </div>
+    <div class="day-chevron">▼</div>
+  </div>
+  <div class="day-body">
+    <div class="day-desc">Walk Noordereiland — an island in the Maas, residential, surprisingly quiet. Then the riverfront. Then whatever neighborhood you missed Sunday. Check Funda as you walk.</div>
+    <div class="spots-label">Your spots here</div>
+    <div class="spots-list">
+      <a class="spot-tag" href="https://www.google.com/maps/place/?q=place_id:ChIJEdDNTOQ0xEcR8RACowUYHDA" target="_blank">Pixelbar Hackerspace</a>
+      <a class="spot-tag" href="https://www.google.com/maps/place/?q=place_id:ChIJydNWSpA0xEcRM_5_XsppXoY" target="_blank">Grounds Live Music</a>
+      <a class="spot-tag" href="https://www.google.com/maps/place/?q=place_id:ChIJYcBzAqW2xUcRzVAmWQQA0K4" target="_blank">Typical Tropical Dance</a>
+    </div>
+  </div>
+</div>
+
+<!-- Rotterdam Scout Fields -->
+<div class="section" style="margin-top:6px;">
+  <div class="section-label">Rotterdam — field notes</div>
+</div>
+<div class="scout-section">
+  <div class="scout-title">Verdict</div>
+  <div class="verdict-row">
+    <button class="verdict-btn live" onclick="setVerdict(this,'rotterdam','live')">Live Here</button>
+    <button class="verdict-btn maybe" onclick="setVerdict(this,'rotterdam','maybe')">Maybe</button>
+    <button class="verdict-btn nope" onclick="setVerdict(this,'rotterdam','nope')">No</button>
+  </div>
+  <div class="vibe-row">
+    <div class="vibe-labels"><span>Too quiet</span><span>Just right</span><span>Too chaotic</span></div>
+    <input type="range" min="0" max="100" value="50" oninput="saveVibe('rotterdam',this.value)">
+  </div>
+  <div class="checks-grid">
+    <label class="check-item"><input type="checkbox" onchange="saveChecks('rotterdam')"> Felt like us</label>
+    <label class="check-item"><input type="checkbox" onchange="saveChecks('rotterdam')"> Good groceries</label>
+    <label class="check-item"><input type="checkbox" onchange="saveChecks('rotterdam')"> Safe at night</label>
+    <label class="check-item"><input type="checkbox" onchange="saveChecks('rotterdam')"> Expat community</label>
+    <label class="check-item"><input type="checkbox" onchange="saveChecks('rotterdam')"> Bikeable</label>
+    <label class="check-item"><input type="checkbox" onchange="saveChecks('rotterdam')"> Date-worthy</label>
+  </div>
+  <label class="field-label">Rent reality (what Funda showed)</label>
+  <input class="field-input" type="text" placeholder="e.g. €1,100/mo for a 2BR near Noordereiland" oninput="saveField('rotterdam','rent',this.value)">
+  <label class="field-label">Neighborhood notes</label>
+  <textarea class="field-input" rows="2" placeholder="Katendrecht felt more like us than Kralingen..." oninput="saveField('rotterdam','notes',this.value)"></textarea>
+  <label class="field-label">Deal breakers</label>
+  <textarea class="field-input" rows="2" placeholder="Anything that gave you pause..." oninput="saveField('rotterdam','dealbreaker',this.value)"></textarea>
+</div>
+
+<div class="section" style="margin-top:6px; margin-bottom:0;">
+  <div class="section-label">Rotterdam — photos</div>
+</div>
+<div class="photo-section">
+  <input type="file" id="photo-rotterdam" accept="image/*" multiple onchange="addPhotos('rotterdam',this)">
+  <button class="photo-add-btn" onclick="document.getElementById('photo-rotterdam').click()">+ Add photos from Rotterdam</button>
+  <div class="photo-grid" id="grid-rotterdam"></div>
+</div>
+
+<!-- ===== UTRECHT ===== -->
+<div class="trip-divider"><div class="divider-line"></div><div class="divider-text">Move east</div><div class="divider-line"></div></div>
+
+<div class="city-header city-utrecht">
+  <div class="city-label">Scouting · Apr 14–15</div>
+  <div class="city-name">Utrecht</div>
+  <div class="city-meta">Most livable city in NL by most rankings. Compact, bikeable, great café culture. People come away from this one surprised by how much they like it.</div>
+</div>
+<div class="city-bar city-bar-utrecht"></div>
+
+<div class="day-card" onclick="toggleDay(this)">
+  <div class="day-card-header">
+    <div class="day-date-block">
+      <div class="day-dow">Tue</div>
+      <div class="day-num" style="color:var(--utrecht)">14</div>
+    </div>
+    <div class="day-info">
+      <div class="day-badge" style="background:var(--utrecht)">Utrecht</div>
+      <div class="day-title">Wittevrouwen + Lombok + Oudegracht</div>
+    </div>
+    <div class="day-chevron">▼</div>
+  </div>
+  <div class="day-body">
+    <div class="train-info">🚆 Rotterdam → Utrecht Centraal · ~45 min</div>
+    <div class="day-desc">Wittevrouwen and Lombok are two very different residential neighborhoods — walk both. Then the Oudegracht at canal level (not just street level — go down the steps). Evening back to Amersfoort.</div>
+    <div class="spots-label">Your spots here</div>
+    <div class="spots-list">
+      <a class="spot-tag" href="https://www.google.com/maps/place/?q=place_id:ChIJP5PkZZdvxkcREyqdfYITL9k" target="_blank">Boulderhal Energiehaven</a>
+      <a class="spot-tag" href="https://www.google.com/maps/place/?q=place_id:ChIJrzgkg2duxkcRZ7hYWA6nAGk" target="_blank">Thermen Maarssen</a>
+      <a class="spot-tag" href="https://www.google.com/maps/place/?q=place_id:ChIJ3-mrIXVvxkcRX07pxAxNzg8" target="_blank">dB's Live Music</a>
+      <a class="spot-tag" href="https://www.google.com/maps/place/?q=place_id:ChIJ6_QnHTNvxkcRRva7Z6xMn3M" target="_blank">Union Dance Company</a>
+    </div>
+    <div class="train-info" style="margin-top:8px;">🚆 Utrecht → Amersfoort · ~15 min · last trains run late</div>
+  </div>
+</div>
+
+<div class="day-card" onclick="toggleDay(this)">
+  <div class="day-card-header">
+    <div class="day-date-block">
+      <div class="day-dow">Wed</div>
+      <div class="day-num" style="color:var(--utrecht)">15</div>
+    </div>
+    <div class="day-info">
+      <div class="day-badge" style="background:var(--utrecht)">Utrecht</div>
+      <div class="day-title">Second full day — deeper walks + reflection</div>
+    </div>
+    <div class="day-chevron">▼</div>
+  </div>
+  <div class="day-body">
+    <div class="train-info">🚆 Amersfoort → Utrecht Centraal · ~15 min</div>
+    <div class="day-desc">Revisit anything that stuck from yesterday. Use this day to answer the question — could you actually live here? Hit the Hackerspace if you haven't. Last evening in Amersfoort.</div>
+    <div class="spots-label">Your spots here</div>
+    <div class="spots-list">
+      <a class="spot-tag" href="https://www.google.com/maps/place/?q=place_id:ChIJ98rCg69lxkcRJ4zsKModS2U" target="_blank">Hackerspace Randomdata</a>
+    </div>
+  </div>
+</div>
+
+<!-- Utrecht Scout Fields -->
+<div class="section" style="margin-top:6px;">
+  <div class="section-label">Utrecht — field notes</div>
+</div>
+<div class="scout-section">
+  <div class="scout-title">Verdict</div>
+  <div class="verdict-row">
+    <button class="verdict-btn live" onclick="setVerdict(this,'utrecht','live')">Live Here</button>
+    <button class="verdict-btn maybe" onclick="setVerdict(this,'utrecht','maybe')">Maybe</button>
+    <button class="verdict-btn nope" onclick="setVerdict(this,'utrecht','nope')">No</button>
+  </div>
+  <div class="vibe-row">
+    <div class="vibe-labels"><span>Too quiet</span><span>Just right</span><span>Too chaotic</span></div>
+    <input type="range" min="0" max="100" value="50" oninput="saveVibe('utrecht',this.value)">
+  </div>
+  <div class="checks-grid">
+    <label class="check-item"><input type="checkbox" onchange="saveChecks('utrecht')"> Felt like us</label>
+    <label class="check-item"><input type="checkbox" onchange="saveChecks('utrecht')"> Good groceries</label>
+    <label class="check-item"><input type="checkbox" onchange="saveChecks('utrecht')"> Safe at night</label>
+    <label class="check-item"><input type="checkbox" onchange="saveChecks('utrecht')"> Expat community</label>
+    <label class="check-item"><input type="checkbox" onchange="saveChecks('utrecht')"> Bikeable</label>
+    <label class="check-item"><input type="checkbox" onchange="saveChecks('utrecht')"> Date-worthy</label>
+  </div>
+  <label class="field-label">Rent reality (what Funda showed)</label>
+  <input class="field-input" type="text" placeholder="e.g. €1,350/mo for a 2BR in Wittevrouwen" oninput="saveField('utrecht','rent',this.value)">
+  <label class="field-label">Neighborhood notes</label>
+  <textarea class="field-input" rows="2" placeholder="Wittevrouwen felt more livable than Lombok..." oninput="saveField('utrecht','notes',this.value)"></textarea>
+  <label class="field-label">Deal breakers</label>
+  <textarea class="field-input" rows="2" placeholder="Anything that gave you pause..." oninput="saveField('utrecht','dealbreaker',this.value)"></textarea>
+</div>
+
+<div class="section" style="margin-top:6px; margin-bottom:0;">
+  <div class="section-label">Utrecht — photos</div>
+</div>
+<div class="photo-section">
+  <input type="file" id="photo-utrecht" accept="image/*" multiple onchange="addPhotos('utrecht',this)">
+  <button class="photo-add-btn" onclick="document.getElementById('photo-utrecht').click()">+ Add photos from Utrecht</button>
+  <div class="photo-grid" id="grid-utrecht"></div>
+</div>
+
+<!-- ===== AMERSFOORT ===== -->
+<div class="trip-divider"><div class="divider-line"></div><div class="divider-text">Base camp</div><div class="divider-line"></div></div>
+
+<div class="city-header city-amersfoort">
+  <div class="city-label">Base 03 · Apr 14–16</div>
+  <div class="city-name">Amersfoort</div>
+  <div class="city-meta">Utrecht was booked out. We pivoted. Medieval city, 15 min train to Utrecht. Beautiful in its own right — another dark horse on the list.</div>
+</div>
+<div class="city-bar city-bar-amersfoort"></div>
+
+<div class="hotel-card">
+  <div class="hotel-eyebrow">Your bed · 2 nights</div>
+  <div class="hotel-name">Long John's Pub & Hotel</div>
+  <div class="hotel-address">Krankeledenstraat 22, 3811 BN Amersfoort</div>
+  <div class="hotel-links">
+    <a class="hotel-link" href="https://www.booking.com/hotel/nl/lange-jan.html" target="_blank">Booking.com</a>
+    <a class="hotel-link" href="https://www.google.com/maps/search/Long+John's+Pub+Hotel+Amersfoort" target="_blank">Maps</a>
+  </div>
+  <div class="hotel-note">Pub hotel in the old town. Last room with two beds — we got lucky. Rated 9.7/10 from 1,401 reviews. "Lange Jan" = Long John in Dutch. You nailed it.</div>
+</div>
+
+<!-- Amersfoort scout fields -->
+<div class="section" style="margin-top:6px;">
+  <div class="section-label">Amersfoort — bonus scout</div>
+</div>
+<div class="scout-section">
+  <div class="scout-title">Surprise contender?</div>
+  <div class="verdict-row">
+    <button class="verdict-btn live" onclick="setVerdict(this,'amersfoort','live')">Live Here</button>
+    <button class="verdict-btn maybe" onclick="setVerdict(this,'amersfoort','maybe')">Maybe</button>
+    <button class="verdict-btn nope" onclick="setVerdict(this,'amersfoort','nope')">No</button>
+  </div>
+  <div class="checks-grid">
+    <label class="check-item"><input type="checkbox" onchange="saveChecks('amersfoort')"> Felt like us</label>
+    <label class="check-item"><input type="checkbox" onchange="saveChecks('amersfoort')"> Good groceries</label>
+    <label class="check-item"><input type="checkbox" onchange="saveChecks('amersfoort')"> Safe at night</label>
+    <label class="check-item"><input type="checkbox" onchange="saveChecks('amersfoort')"> Expat community</label>
+  </div>
+  <label class="field-label">First impressions</label>
+  <textarea class="field-input" rows="2" placeholder="Didn't expect much but..." oninput="saveField('amersfoort','notes',this.value)"></textarea>
+</div>
+
+<div class="section" style="margin-top:6px; margin-bottom:0;">
+  <div class="section-label">Amersfoort — photos</div>
+</div>
+<div class="photo-section">
+  <input type="file" id="photo-amersfoort" accept="image/*" multiple onchange="addPhotos('amersfoort',this)">
+  <button class="photo-add-btn" onclick="document.getElementById('photo-amersfoort').click()">+ Add photos from Amersfoort</button>
+  <div class="photo-grid" id="grid-amersfoort"></div>
+</div>
+
+<!-- DEPART -->
+<div class="trip-divider"><div class="divider-line"></div><div class="divider-text">Fly home</div><div class="divider-line"></div></div>
+<div class="section">
+  <div class="section-label">Departure · Apr 16</div>
+</div>
+<div class="transit-card" style="background:var(--ink);">
+  <div class="transit-title">Getting to Schiphol</div>
+  <div class="transit-row">
+    <span class="transit-route">Leave hotel by</span>
+    <span class="transit-time">7:45 AM</span>
+  </div>
+  <div class="transit-row">
+    <span class="transit-route">Amersfoort → Schiphol</span>
+    <span class="transit-time">~45 min direct</span>
+    <a class="transit-link" href="https://www.ns.nl/en/journeyplanner/#/?vertrek=Amersfoort&aankomst=Amsterdam+Airport+Schiphol" target="_blank">Plan</a>
+  </div>
+  <div class="transit-row">
+    <span class="transit-route">Flight departs</span>
+    <span class="transit-time">10:20 AM</span>
+  </div>
+  <div class="transit-row">
+    <span class="transit-route">Arrive Seattle</span>
+    <span class="transit-time">11:45 AM</span>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-title">After the trip</div>
+  <div class="footer-note">When you get back, send your version of this dossier to each other — your photos, verdicts, notes. Compare city by city. The one where you both wrote something real in the notes field is probably the answer.<br><br>Good luck. You're going to love it over there.</div>
+</div>
+
+<script>
+// ── CONFIG ────────────────────────────────────────────────────────────────────
+const YOURDOMAIN = 'recklesspeach.com';
+const API_BASE   = 'https://api.' + YOURDOMAIN;
+const CITIES     = ['haarlem', 'rotterdam', 'utrecht', 'amersfoort'];
+
+// In-memory photo store: { haarlem: [base64, ...], ... }
+const photoArrays = { haarlem: [], rotterdam: [], utrecht: [], amersfoort: [] };
+
+// ── EXISTING FUNCTIONS ────────────────────────────────────────────────────────
+function toggleDay(card) {
+  card.classList.toggle('open');
+}
+
+function setVerdict(btn, city, v) {
+  const row = btn.parentElement;
+  row.querySelectorAll('.verdict-btn').forEach(b => {
+    b.classList.remove('selected-live','selected-maybe','selected-nope');
+  });
+  btn.classList.add('selected-' + v);
+  localStorage.setItem('verdict-' + city, v);
+}
+
+function saveVibe(city, val) {
+  localStorage.setItem('vibe-' + city, val);
+}
+
+function saveChecks(city) {
+  const section = event.target.closest('.scout-section');
+  const checks = section.querySelectorAll('input[type=checkbox]');
+  const vals = Array.from(checks).map(c => c.checked);
+  localStorage.setItem('checks-' + city, JSON.stringify(vals));
+}
+
+function saveField(city, field, val) {
+  localStorage.setItem('field-' + city + '-' + field, val);
+}
+
+// ── PHOTO FUNCTIONS ───────────────────────────────────────────────────────────
+function renderPhotoThumb(city, base64, index) {
+  const wrap = document.createElement('div');
+  wrap.style.cssText = 'position:relative;aspect-ratio:1;';
+
+  const img = document.createElement('img');
+  img.src = base64;
+  img.className = 'photo-thumb';
+  img.style.cssText = 'width:100%;height:100%;object-fit:cover;border-radius:5px;display:block;';
+
+  const del = document.createElement('button');
+  del.textContent = '✕';
+  del.style.cssText = [
+    'position:absolute;top:4px;right:4px;',
+    'width:22px;height:22px;border-radius:50%;',
+    'background:rgba(14,14,14,0.75);color:#fff;',
+    'border:none;font-size:11px;line-height:1;',
+    'cursor:pointer;z-index:2;display:flex;',
+    'align-items:center;justify-content:center;',
+    'padding:0;'
+  ].join('');
+  del.setAttribute('aria-label', 'Delete photo');
+  del.onclick = () => deletePhoto(city, base64);
+
+  wrap.appendChild(img);
+  wrap.appendChild(del);
+  return wrap;
+}
+
+function rebuildGrid(city) {
+  const grid = document.getElementById('grid-' + city);
+  grid.innerHTML = '';
+  photoArrays[city].forEach((b64, i) => {
+    grid.appendChild(renderPhotoThumb(city, b64, i));
+  });
+}
+
+function savePhotosToStorage(city) {
+  localStorage.setItem('photos-' + city, JSON.stringify(photoArrays[city]));
+}
+
+function deletePhoto(city, base64) {
+  photoArrays[city] = photoArrays[city].filter(b => b !== base64);
+  savePhotosToStorage(city);
+  rebuildGrid(city);
+}
+
+function addPhotos(city, input) {
+  const files = Array.from(input.files);
+  let loaded = 0;
+  files.forEach(file => {
+    const reader = new FileReader();
+    reader.onload = e => {
+      const b64 = e.target.result;
+      if (!photoArrays[city].includes(b64)) {
+        photoArrays[city].push(b64);
+      }
+      loaded++;
+      if (loaded === files.length) {
+        savePhotosToStorage(city);
+        rebuildGrid(city);
+      }
+    };
+    reader.readAsDataURL(file);
+  });
+  // reset input so same file can be re-added if deleted
+  input.value = '';
+}
+
+// ── STATE RESTORE ─────────────────────────────────────────────────────────────
+function restoreState() {
+  CITIES.forEach(city => {
+    const v = localStorage.getItem('verdict-' + city);
+    if (v) {
+      const btns = document.querySelectorAll(`[onclick*="setVerdict(this,'${city}'"]`);
+      btns.forEach(b => {
+        if (b.getAttribute('onclick').includes("'" + v + "'")) {
+          b.classList.add('selected-' + v);
+        }
+      });
+    }
+    const vibe = localStorage.getItem('vibe-' + city);
+    if (vibe) {
+      const sliders = document.querySelectorAll(`[oninput*="saveVibe('${city}'"]`);
+      sliders.forEach(s => s.value = vibe);
+    }
+    const checks = localStorage.getItem('checks-' + city);
+    if (checks) {
+      try {
+        const vals = JSON.parse(checks);
+        const allChecks = document.querySelectorAll(`[onchange*="saveChecks('${city}')"]`);
+        vals.forEach((v, i) => { if (allChecks[i]) allChecks[i].checked = v; });
+      } catch(e) {}
+    }
+    ['rent','notes','dealbreaker'].forEach(field => {
+      const val = localStorage.getItem('field-' + city + '-' + field);
+      if (val) {
+        const inputs = document.querySelectorAll(`[oninput*="saveField('${city}','${field}'"]`);
+        inputs.forEach(inp => inp.value = val);
+      }
+    });
+    // Restore photos
+    try {
+      const stored = JSON.parse(localStorage.getItem('photos-' + city) || '[]');
+      photoArrays[city] = stored;
+      rebuildGrid(city);
+    } catch(e) {}
+  });
+}
+restoreState();
+
+// ── PUSH ──────────────────────────────────────────────────────────────────────
+function buildSnapshot() {
+  const state = {};
+  for (let i = 0; i < localStorage.length; i++) {
+    const k = localStorage.key(i);
+    if (k.startsWith('photos-')) continue; // sent separately
+    state[k] = localStorage.getItem(k);
+  }
+  return {
+    editorId: 'nl-recon-2026',
+    pushedAt: new Date().toISOString(),
+    state,
+    photos: {
+      haarlem:    [...photoArrays.haarlem],
+      rotterdam:  [...photoArrays.rotterdam],
+      utrecht:    [...photoArrays.utrecht],
+      amersfoort: [...photoArrays.amersfoort]
+    }
+  };
+}
+
+async function pushUpdate() {
+  const btn = document.getElementById('push-btn');
+  const snapshot = buildSnapshot();
+  const payload = JSON.stringify(snapshot);
+
+  // 20 MB guard (approx — base64 inflates ~33%)
+  if (payload.length > 20 * 1024 * 1024) {
+    alert('Payload exceeds 20 MB. Remove some photos before pushing.');
+    return;
+  }
+
+  btn.textContent = '⏳ Pushing…';
+  btn.disabled = true;
+
+  try {
+    const res = await fetch(API_BASE + '/api/push', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Write-Key': 'recon2026push'
+      },
+      body: payload
+    });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    btn.textContent = '✓ Pushed';
+  } catch(e) {
+    btn.textContent = '✗ Failed — try again';
+  }
+
+  setTimeout(() => {
+    btn.textContent = '⬆ Push Update';
+    btn.disabled = false;
+  }, 3000);
+}
+</script>
+
+<!-- PUSH BUTTON -->
+<button id="push-btn" onclick="pushUpdate()" style="
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  min-height:56px;
+  min-width:160px;
+  background:var(--ink);
+  color:var(--paper);
+  border:none;
+  border-radius:8px;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:13px;
+  letter-spacing:0.08em;
+  cursor:pointer;
+  z-index:1000;
+  padding:0 20px;
+  box-shadow:0 4px 16px rgba(0,0,0,0.3);
+  -webkit-tap-highlight-color:transparent;
+">⬆ Push Update</button>
+
+</body>
+</html>

@@ -1,0 +1,7 @@
+name            = "nl-recon-2026"
+main            = "index.js"
+compatibility_date = "2024-01-01"
+
+[[kv_namespaces]]
+binding  = "NL_RECON_KV"
+id       = "4d82dfa470e74240a747641e9457f2d5"
