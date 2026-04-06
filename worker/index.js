@@ -9,6 +9,7 @@ const KV_KEY     = 'nl-recon-2026';
 const ALLOWED_ORIGINS = [
   'https://recklesspeach.com',
   'https://www.recklesspeach.com',
+  'https://chromaglow.github.io',
 ];
 
 function corsHeaders(origin) {
